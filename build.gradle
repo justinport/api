@@ -4,15 +4,19 @@ plugins {
     id 'java'
 }
 
+def globalConf = rootProject.ext
+
 group = 'com.appodia'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+
+apply from: 'dependencies.gradle'
 
 repositories {
     mavenCentral()
 }
 
-
+/*
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'io.springfox:springfox-swagger2:3.0.0'
@@ -21,6 +25,17 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}*/
+
+
+dependencies {
+    Map<String, String> dependencies = globalConf.dependencies
+
+    implementation dependencies.spring_boot_starter_web
+    implementation dependencies.swagger2
+    implementation dependencies.swagger_ui
+    compileOnly dependencies.spring_boot_starter_web
+    testImplementation dependencies.spring_boot_starter_test
 }
 
 tasks.named('test') {

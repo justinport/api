@@ -1,0 +1,9 @@
+ext {
+    dependencies = [
+            swagger2                     : 'io.springfox:springfox-swagger2:3.0.0',
+            swagger_ui                   : 'io.springfox:springfox-swagger-ui:3.0.0',
+            spring_boot_starter_web      : 'org.springframework.boot:spring-boot-starter-web',
+            spring_boot_starter_test     : 'org.springframework.boot:spring-boot-starter-test',
+            postgresql                   : 'org.postgresql:postgresql:42.2.12'
+    ]
+}
