@@ -1,7 +1,6 @@
 package com.appodia.api;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -21,7 +20,7 @@ import java.util.List;
 //@Configuration
 public class SwaggerConfig {
 
-    private static final String MAS_URL = "https://www.test.com/";
+    private static final String URL = "https://www.test.com/";
 
     @Bean
     public Docket api() {
@@ -39,9 +38,9 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("Resource API")
                 .description("Coming soon.")
-                .license(MAS_URL)
-                .licenseUrl(MAS_URL)
-                .termsOfServiceUrl(MAS_URL)
+                .license(URL)
+                .licenseUrl(URL)
+                .termsOfServiceUrl(URL)
                 .version("1.0.0")
                 .build();
     }
