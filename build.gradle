@@ -1,43 +1,35 @@
 plugins {
-    id 'org.springframework.boot' version '2.7.2'
-    id 'io.spring.dependency-management' version '1.0.12.RELEASE'
+    id 'org.springframework.boot' version '2.5.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
 
-def globalConf = rootProject.ext
+def springfoxVersion = '3.0.0'
+def springfoxUiVersion = '2.9.2'
 
-group = 'com.appodia'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+group = 'com.jos.dem.swagger'
+version = '1.0.0-SNAPSHOT'
 
-apply from: 'dependencies.gradle'
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
 
 repositories {
     mavenCentral()
 }
 
-/*
 dependencies {
+    implementation "io.springfox:springfox-swagger2:${springfoxVersion}"
+    implementation "io.springfox:springfox-swagger-ui:${springfoxUiVersion}"
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    compileOnly 'io.springfox:springfox-swagger2:3.0.0'
-    compileOnly 'io.springfox:springfox-swagger-ui:3.0.0'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'org.postgresql:postgresql'
-    testImplementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}*/
-
-
-dependencies {
-    Map<String, String> dependencies = globalConf.dependencies
-
-    implementation dependencies.spring_boot_starter_web
-    implementation dependencies.swagger2
-    implementation dependencies.swagger_ui
-    compileOnly dependencies.spring_boot_starter_web
-    testImplementation dependencies.spring_boot_starter_test
 }
 
-tasks.named('test') {
-   useJUnitPlatform()
+test {
+    useJUnitPlatform()
 }
