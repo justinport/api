@@ -1,4 +1,4 @@
-package com.appodia.api.config;
+package com.sample.api.config;
 
 
 import org.springframework.context.annotation.Bean;
@@ -28,7 +28,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.appodia.api"))
+                .apis(RequestHandlerSelectors.basePackage("com.sample.api"))
                 .build()
                 .apiInfo(apiInfo())
                 .securitySchemes(Collections.singletonList(apiKey()))
