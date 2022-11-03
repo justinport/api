@@ -5,8 +5,10 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.sample.api.models.FoodItem;
 import com.sample.api.models.FoodNutrient;
+import com.sample.api.models.SearchResults;
 import com.sample.api.models.User;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.links.Link;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -40,6 +42,8 @@ public class UsersController {
 
 
             String apiUrl = "https://api.nal.usda.gov/fdc/v1/foods/list?api_key=DEMO_KEY";
+
+            apiUrl = "https://api.nal.usda.gov/fdc/v1/foods/search?api_key=DEMO_KEY&query=Cheddar%20Cheese&pageSize=10";
 
             final HttpGet httpget = new HttpGet(apiUrl);
 
@@ -89,15 +93,16 @@ public class UsersController {
             Gson gson = new GsonBuilder()
                     .create();
 
-            Type listOfFoodItem = new TypeToken<LinkedList<FoodItem>>() {
+            Type listOfFoodItem = new TypeToken<SearchResults>() {
             }.getType();
 
           //  List<FoodItem> responseFromApi = gson.fromJson(new FileReader("/Users/justinport/Documents/GitHub/api/src/main/resources/food_list.json"), listOfFoodItem);
 
             String apiResponse = GetfoodListFromFoodDataCentral();
 
-            List<FoodItem> responseFromApi = gson.fromJson(apiResponse, listOfFoodItem);
+            SearchResults responseFromApi = gson.fromJson(apiResponse, listOfFoodItem);
 
+           LinkedList<FoodItem> foodItemsFromSearch = responseFromApi.getFoods();
 
             User mockUser = new User();
             mockUser.setUserName("jport@ric.edu");
