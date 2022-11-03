@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin(origins = "http://localhost:63342")
 public class UsersController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -24,7 +25,15 @@ public class UsersController {
             @ApiResponse(responseCode = "500", description = "Internal Error",
                     content = @Content)})
     @GetMapping(produces = { "application/json" })
-    public User getUserById(@PathVariable int id){
+    public User getUserById(@PathVariable String id){
+        if(!id.contains("@")){
+            //return status code of 400 with message saying bad input
+        }
+
+        //write code to connect to the database
+
+
+        //get response and return as json
 
         User mockUser = new User();
         mockUser.setUserName("jport@ric.edu");
